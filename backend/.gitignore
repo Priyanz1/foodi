@@ -1,0 +1,25 @@
+# Ignore environment files
+.env
+.env.*
+
+# Node modules
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# Editor folders
+.vscode/
+.idea/
+
+# Optional: keep only recommended vscode settings
+!.vscode/extensions.json
