@@ -4,25 +4,12 @@ const cors = require("cors");
 
 const app = express();
 
-const allowedOrigins = [
-  "https://foodi-khaki.vercel.app",
-];
-
 app.use(
   cors({
-    origin(origin, callback) {
-      // Allow server-to-server calls and approved browser origins.
-      if (!origin || allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-      return callback(new Error("Not allowed by CORS"));
-    },
+    origin: process.env.FRONTEND_URL || "https://foodi-khaki.vercel.app",
     credentials: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.options("*", cors());
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
