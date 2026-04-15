@@ -5,10 +5,8 @@ const cors = require("cors");
 const app = express();
 
 const allowedOrigins = [
-  process.env.FRONTEND_URL,
   "https://foodi-khaki.vercel.app",
-  "http://localhost:5173",
-].filter(Boolean);
+];
 
 app.use(
   cors({
