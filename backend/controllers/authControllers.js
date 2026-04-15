@@ -11,6 +11,7 @@ const UserProfile = async (req, res, next) => {
 };
 
 const authLoginController = async (req, res) => {
+  // console.log("Login request received with body:", req.body);
   try {
     const { email, password } = req.body;
 

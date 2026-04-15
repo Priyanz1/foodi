@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 app.use(cors({
-    origin:"https://foodi-khaki.vercel.app",
+    origin:'https://foodi-khaki.vercel.app',
     credentials: true
  }));
 
