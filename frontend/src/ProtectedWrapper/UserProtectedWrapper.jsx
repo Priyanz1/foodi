@@ -5,21 +5,22 @@ import { useUserData } from '../Context/UserDataContext';
 
 function UserProtectedWrapper({children}) {
    
-    const token=localStorage.getItem('token');
     const [isloading,setisloading]=useState(true);
     const { user,setuser } = useUserData();
     const navigate=useNavigate();
    useEffect(()=>{
+    const token=localStorage.getItem('token');
     if(!token){
       navigate("/login");
       setisloading(false);
       return;
     }
 
-    axios.get("http://localhost:3000/api/user/profile", {
+    axios.get(`${import.meta.env.VITE_API_URL}/api/user/profile`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      withCredentials: true,
     }).then((response) => {
         if (response.status === 200) {
           setuser(response.data); 
@@ -29,8 +30,9 @@ function UserProtectedWrapper({children}) {
         console.error(err);
         localStorage.removeItem('token');
         navigate('/login');
+        setisloading(false);
       });
-   }, [token]);
+   }, [navigate, setuser]);
 
    if(isloading){
     return(

@@ -5,21 +5,22 @@ import { useFoodPartner } from '../Context/FoodPartnerContext';
 
 function FPProtectedWrapper({children}) {
    
-    const token=localStorage.getItem('token');
     const [isloading,setisloading]=useState(true);
     const {foodpartner, setfoodpartner } = useFoodPartner();
     const navigate=useNavigate();
    useEffect(()=>{
+    const token=localStorage.getItem('token');
     if(!token){
       navigate("/foodpartnerlogin");
       setisloading(false);
       return;
     }
 
-    axios.get("http://localhost:3000/api/foodpartner/profile", {
+    axios.get(`${import.meta.env.VITE_API_URL}/api/foodpartner/profile`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      withCredentials: true,
     }).then((response) => {
         if (response.status === 200) {
           setfoodpartner(response.data); 
@@ -29,8 +30,9 @@ function FPProtectedWrapper({children}) {
         console.error(err);
         localStorage.removeItem('token');
         navigate('/foodpartnerlogin');
+        setisloading(false);
       });
-   }, [token]);
+   }, [navigate, setfoodpartner]);
 
    if(isloading){
     return(
