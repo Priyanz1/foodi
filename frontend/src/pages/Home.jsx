@@ -253,7 +253,7 @@ function Home() {
 
             <div className="absolute inset-0 flex justify-between items-end p-[24px_16px] bg-[linear-gradient(to_top,rgba(0,0,0,0.72),rgba(0,0,0,0.24),transparent)]">
               <div className="max-w-[75%]">
-                <h3 className="text-[18px] font-bold mb-[8px]">@{item.name}</h3>
+                <h3 className="text-[18px] text-white font-bold mb-[8px]">@{item.name}</h3>
                 <p className="text-[14px] leading-[1.5] text-[#e2e8f0]">
                   {item.description}
                 </p>
